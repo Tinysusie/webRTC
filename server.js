@@ -8,7 +8,7 @@ var wss = new WebSocketServer({
 
 //all connected to the server users 
 var users = {};
-
+//测试更新
 //when a user connects to our sever 
 wss.on('connection', function (connection) {
 
