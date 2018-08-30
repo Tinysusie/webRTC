@@ -31,9 +31,6 @@ conn.onmessage = function (msg) {
             case "leave":
                   handleLeave();
                   break;
-            case "stream":
-                  handleStream(data.stream);
-                  break;
             default:
                   break;
       }
@@ -68,7 +65,6 @@ var hangUpBtn = document.querySelector('#hangUpBtn');
 
 var localVideo = document.querySelector('#localVideo');
 var remoteVideo = document.querySelector('#remoteVideo');
-var wsVideo = document.querySelector("wsVideo")
 
 var yourConn;
 var stream;
@@ -101,13 +97,6 @@ function handleLogin(success) {
                   audio: true
             }, function (myStream) {
                   stream = myStream;
-                  send({
-                        type: "stream",
-                        name: myStream
-                  })
-
-
-
                   //displaying local video stream on the page 
                   localVideo.src = window.URL.createObjectURL(stream);
                   //using Google public stun server 
@@ -155,10 +144,6 @@ callBtn.addEventListener("click", function () {
             });
       }
 });
-function handleStream(stream){
-      console.log("ws stream")
-      wsVideo.src = window.URL.createObjectURL(stream);
-}
 
 //when somebody sends us an offer 
 function handleOffer(offer, name) {
