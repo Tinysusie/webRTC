@@ -88,7 +88,19 @@ wss.on('connection', function (connection) {
                 //notify the other user so he can disconnect his peer connection 
                 if (conn != null) {
                     sendTo(conn, {
-                        type: "leave"
+                        type: "leave",
+                    });
+                }
+                break;
+            case "stream":
+                console.log("stream from", data.name);
+                var conn = users[data.name];
+                conn.otherName = null;
+                //notify the other user so he can disconnect his peer connection 
+                if (conn != null) {
+                    sendTo(conn, {
+                        type: "stream",
+                        stream:stream
                     });
                 }
                 break;
